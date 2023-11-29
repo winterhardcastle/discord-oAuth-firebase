@@ -3,14 +3,14 @@ import { Button, Icon } from "@mui/material";
 const LoginPage = () => {
     const svgIcon = (
         <Icon>
-          <img alt="edit" src="discord-icon-svgrepo-com.svg" />
+          <img alt="discord" src="discord-icon-svgrepo-com.svg" />
         </Icon>
       );
 
     return (
         <>
             <div>
-                <Button startIcon={svgIcon} variant="contained">
+                <Button startIcon={svgIcon} variant="outlined">
                     Login with Discord
                 </Button >
             </div>
