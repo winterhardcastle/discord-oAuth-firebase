@@ -13,7 +13,7 @@ import { getFirestore } from "firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAQr83J8ivfY8NGXpdoieh5lh58w53HsGU",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
 
   authDomain: "discord-oauth-demo-416dc.firebaseapp.com",
 
@@ -23,7 +23,7 @@ const firebaseConfig = {
 
   messagingSenderId: "743098017808",
 
-  appId: "1:743098017808:web:8bba293fe2f16b024b4295",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 
   measurementId: "G-4EJP76X06W",
 };

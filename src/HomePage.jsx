@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { setDoc, collection, getDoc, doc } from 'firebase/firestore'
+import { setDoc, getDoc, doc } from 'firebase/firestore'
 import {db} from '/server/firebase.js'
 
 const HomePage = () => {
