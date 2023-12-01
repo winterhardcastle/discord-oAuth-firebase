@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addDoc, collection } from 'firebase/firestore'
+import { setDoc, collection, getDoc, doc } from 'firebase/firestore'
 import {db} from '/server/firebase.js'
 
 const HomePage = () => {
@@ -41,13 +41,22 @@ const HomePage = () => {
             })
             const user = await userInfo.json()
             //CREATES FIREBASE ENTRY
-            await addDoc(collection(db, 'users'), {
+            await setDoc(doc(db, 'users', user.id), {
                 discord_id: user.id,
                 username: user.username,
                 email: user.email,
                 locale: user.locale,
             })
-            setUserInfo(user)
+            const docRef = doc(db, "users", user.id);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+            } else {
+                // docSnap.data() will be undefined in this case
+                console.log("No such document!");
+            }
+            setUserInfo(docSnap.data())
         }
         getUserInfo()
         
@@ -60,11 +69,11 @@ const HomePage = () => {
             </div>
             <div>
                 <ul>
-                    <li>ID: {userInfo.id}</li>
+                    <li>ID: {userInfo.discord_id}</li>
                     <li>EMAIl: {userInfo.email}</li>
                     <li>USERNAME: {userInfo.username}</li>
                     <li>LOCALE: {userInfo.locale}</li>
-                    <li>VERIFIED: {userInfo.verified ? 'True' : 'False'}</li>
+                    {/* <li>VERIFIED: {userInfo.verified ? 'True' : 'False'}</li> */}
                 </ul>
             </div>
         </>
